@@ -1,25 +1,24 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git 'https://github.com/your-repo/your-project.git' // Update with your repo URL
             }
         }
-        stage('Build') {
+        stage('Maven Build') {
             steps {
-                sh 'echo Building the project...'
+                sh 'mvn clean install'
             }
         }
-        stage('Sonar Scan') {
+        stage('Sonar Scanning') {
             steps {
-                sh 'echo Performing SonarQube analysis...'
+                sh 'mvn sonar:sonar'
             }
         }
-        stage('Download from Artifactory') {
+        stage('Artifactory Download') {
             steps {
-                sh 'echo Downloading artifacts from Artifactory...'
+                sh 'curl -u user:password "https://your.artifactory.server/artifactory/repo/path/to/artifact" -O'
             }
         }
     }
