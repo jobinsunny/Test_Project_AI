@@ -3,23 +3,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-repo/your-project.git' // Update with your repo URL
+                git url: 'https://github.com/jobinsunny/Test_Project_AI.git'
             }
         }
-        stage('Maven Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage('Sonar Scanning') {
-            steps {
-                sh 'mvn sonar:sonar'
-            }
-        }
-        stage('Artifactory Download') {
-            steps {
-                sh 'curl -u user:password "https://your.artifactory.server/artifactory/repo/path/to/artifact" -O'
-            }
-        }
+        // Other stages...
     }
 }
