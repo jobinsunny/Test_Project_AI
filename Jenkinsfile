@@ -1,11 +1,16 @@
-pipeline {
+pipeline { 
     agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/jobinsunny/Test_Project_AI.git'
-            }
+
+    stages { 
+        stage('Checkout') { 
+            steps { 
+                checkout scm 
+            } 
         }
-        // Other stages...
+        stage('Maven Build') { 
+            steps { 
+                sh 'mvn clean install' 
+            } 
+        }
     }
 }
